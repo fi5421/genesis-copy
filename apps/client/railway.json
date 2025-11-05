@@ -1,0 +1,12 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "build": {
+    "buildCommand": "npm run build:client",
+    "builder": "RAILPACK",
+    "rootDirectory": "/"
+  },
+  "deploy": {
+    "startCommand": "serve -s apps/client/dist/ -l $PORT",
+    "watchPaths": ["/apps/client/**"]
+  }
+}
