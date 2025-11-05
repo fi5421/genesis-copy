@@ -1,0 +1,13 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "build": {
+    "buildCommand": "npm run build:server",
+    "builder": "NIXPACKS",
+    "rootDirectory": "/"
+  },
+  "deploy": {
+    "preDeployCommand": ["npm run db:migrate"],
+    "startCommand": "node apps/server/dist/main.js",
+    "watchPaths": ["/apps/server/**"]
+  }
+}

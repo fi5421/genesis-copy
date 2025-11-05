@@ -1,0 +1,146 @@
+---
+alwaysApply: true
+---
+
+This is an Nx 21.3.5 monorepo with npm package manager, featuring a React + Express + Drizzle + Firebase full-stack architecture:
+
+## Architecture Overview
+
+The workspace follows a modern full-stack architecture with clear separation between frontend and backend applications:
+
+### Applications (apps/)
+
+• **client** (React 19 + TanStack Router + Vite) - Frontend application
+
+- React 19 with TanStack Router for type-safe routing
+- Tailwind CSS with Shadcn/ui components
+- Firebase authentication integration
+- Vite build system with hot module replacement
+- Dependencies: UI components, authentication hooks, API clients, utilities
+
+• **server** (Express + TypeScript + Drizzle) - Backend API server
+
+- Express.js REST API with TypeScript
+- Drizzle ORM with PostgreSQL database
+- Firebase Admin SDK for authentication
+- JWT token validation middleware
+- Webpack build system for Node.js
+- Dependencies: Database schema, controllers, middleware, utilities
+
+### Technology Stack
+
+**Frontend (React 19 + Vite):**
+
+- React 19 with React DOM 19
+- TanStack Router v1 for type-safe routing with devtools
+- UI: Shadcn/ui components built on Radix UI primitives
+- Styling: Tailwind CSS v3 with custom animations (tw-animate-css)
+- State Management: Custom hooks (useAuth, use-mobile)
+- Auth: Firebase v12 client SDK
+- Utilities: Lucide React icons, clsx, tailwind-merge, Zod validation, date-fns
+
+**Backend (Express + Drizzle):**
+
+- Express.js v4 with CORS middleware
+- Database: Drizzle ORM v0.44 with PostgreSQL (pg v8)
+- Authentication: Firebase Admin v13 + JWT tokens
+- Validation: Drizzle-Zod integration for type-safe schemas
+- Environment: dotenv for configuration management
+- Build: Webpack with SWC compilation
+
+**Development & Testing:**
+
+- Build System: Nx 21.3.5 with caching and task dependencies
+- Testing: Jest v30 + Vitest v3 with coverage, React Testing Library
+- Code Quality: ESLint v9 + TypeScript ESLint, Prettier v2.6
+- Git Hooks: Husky v9 + lint-staged for pre-commit validation
+- Commit Standards: Commitlint with conventional commits
+
+**Database & Infrastructure:**
+
+- PostgreSQL with Drizzle ORM and migrations
+- Drizzle Kit for schema generation and database studio
+- Firebase for authentication and cloud services
+
+**Date & Time Handling:**
+
+- date-fns v4+ for all date/time operations with built-in TypeScript support
+
+## Project Structure & Conventions
+
+### Dependency Flow
+
+1. **apps/** can depend on shared utilities and configurations but not each other
+2. **client** app uses Firebase client SDK for authentication
+3. **server** app uses Firebase Admin SDK for token verification
+4. Shared types and utilities can be used across both applications
+
+### Import Conventions
+
+- Use `@my-workspace/` path aliases for internal packages
+- Frontend components use ES modules with Vite resolution
+- Backend uses CommonJS/ES modules with Webpack compilation
+- Shared utilities should be framework-agnostic when possible
+
+### Database Patterns
+
+- Use Drizzle ORM for type-safe database operations
+- Database schema defined in `apps/server/src/db/schema/`
+- Migrations managed via Drizzle Kit commands
+- Use Zod schemas for API validation integrated with Drizzle
+
+### Authentication Flow
+
+- Firebase Authentication on client with Google Sign-In
+- JWT token validation on server using Firebase Admin
+- Authentication middleware protects server routes
+- Client stores auth state in React context/hooks
+
+### UI Components
+
+- Use Shadcn/ui components built on Radix UI primitives
+- Tailwind CSS for styling with custom design system
+- Responsive design with mobile-first approach
+- Dark mode support via next-themes
+
+## Development Workflows
+
+### Available Scripts
+
+- `npm run dev` - Start both client and server in parallel
+- `npm run dev:client` - Start frontend development server
+- `npm run dev:server` - Start backend development server
+- `npm run build` - Build both applications for production
+- `npm run test` - Run tests for both applications
+- `npm run lint` - Lint code with auto-fix capability
+- `npm run db:generate` - Generate Drizzle schema migrations
+- `npm run db:migrate` - Run database migrations
+- `npm run db:studio` - Open Drizzle Studio for database management
+
+### Code Generation & Maintenance
+
+- Use `nx generate` for consistent project structure
+- Follow React 19 patterns with modern hooks and concurrent features
+- Use TanStack Router's file-based routing conventions
+- Implement server routes with Express.js middleware pattern
+- Leverage Drizzle's type-safe query builder
+
+When answering questions or generating code:
+
+1. **Respect the full-stack architecture**: Maintain clear separation between client and server concerns
+2. **Use modern React patterns**: Leverage React 19 features, hooks, and concurrent rendering
+3. **Follow TanStack Router conventions**: Use file-based routing with type-safe route definitions
+4. **Implement type-safe APIs**: Use Zod validation and Drizzle schema types
+5. **Maintain authentication consistency**: Use Firebase client/admin patterns appropriately
+6. **Follow component patterns**: Use Shadcn/ui components with Tailwind styling
+7. **Leverage Nx efficiently**: Use built-in caching, parallel execution, and dependency management
+8. **Database best practices**: Use Drizzle migrations, type-safe queries, and proper schema design
+9. **Apply code quality standards**: Follow ESLint rules, Prettier formatting, and commit conventions
+10. **NX MCP Server**: Use the Nx MCP server tools when needed for workspace management, dependency visualization, or task execution
+
+### Key Dependencies to Remember
+
+- **Client**: React 19, TanStack Router, Firebase client, Shadcn/ui, Tailwind, date-fns
+- **Server**: Express, Drizzle ORM, Firebase Admin, PostgreSQL, JWT, date-fns
+- **Shared**: TypeScript, Zod validation, ESLint, Prettier, Jest/Vitest, date-fns
+- **Build**: Nx 21.3.5, Vite (client), Webpack (server), SWC compilation
