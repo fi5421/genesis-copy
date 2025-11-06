@@ -7,6 +7,6 @@
   },
   "deploy": {
     "startCommand": "serve -s apps/client/dist/ -l $PORT",
-    "watchPaths": ["/apps/client/**"]
+    "watchPatterns": ["/apps/client/**"]
   }
 }

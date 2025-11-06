@@ -8,6 +8,6 @@
   "deploy": {
     "preDeployCommand": ["npm run db:migrate"],
     "startCommand": "node apps/server/dist/main.js",
-    "watchPaths": ["/apps/server/**"]
+    "watchPatterns": ["/apps/server/**"]
   }
 }
